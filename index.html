@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SANS Cafe — kopi, makanan, dan ruang nyaman untuk menikmati waktu.">
+  <title>SANS Cafe | Relax & Enjoy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--coffee:#35271f;--coffee2:#4b382b;--cream:#f7f3ed;--paper:#fffdfa;--tan:#bd8b5b;--muted:#807368;--line:#e9e0d6}
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--coffee);line-height:1.65}
+    img{display:block;max-width:100%}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .site-header{height:78px;padding:0 7%;display:flex;align-items:center;justify-content:space-between;background:var(--coffee);color:#fff;position:sticky;top:0;z-index:50;box-shadow:0 4px 18px #1b120d20}
+    .brand{font-family:"Playfair Display",serif;font-size:29px;letter-spacing:3px;font-weight:700}
+    .brand span{color:#d5a878}
+    nav{display:flex;align-items:center;gap:30px}
+    .nav-link{font-size:14px;color:#eee5dc;transition:.2s;padding:8px 0;border-bottom:2px solid transparent}
+    .nav-link:hover,.nav-link.active{color:#e0b27f;border-color:#e0b27f}
+    .menu-toggle{display:none;border:0;background:none;color:white;font-size:28px;cursor:pointer}
+    .page{display:none;min-height:70vh;animation:appear .35s ease}
+    .page.active{display:block}
+    @keyframes appear{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    .hero{min-height:590px;display:grid;place-items:center;text-align:center;color:#fff;padding:70px 20px;background:linear-gradient(#21170c80,#21170c70),url("https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=2000&q=88") center/cover}
+    .eyebrow{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#e7c49d;font-weight:700}
+    .hero h1{font-family:"Playfair Display",serif;font-size:clamp(46px,7vw,82px);line-height:1.12;letter-spacing:3px;margin:14px 0}
+    .hero p{font-size:17px;color:#f4eee8;margin:0 auto 30px;max-width:560px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:30px;background:var(--tan);color:#fff;padding:13px 27px;font-weight:700;cursor:pointer;transition:.25s}
+    .btn:hover{background:#a87546;transform:translateY(-2px)}
+    .btn-outline{background:transparent;border:1px solid #fff;margin-left:9px}
+    .btn-outline:hover{background:#fff;color:var(--coffee)}
+    section{padding:76px 7%}
+    .section-heading{text-align:center;margin:0 auto 38px;max-width:650px}
+    .section-heading .eyebrow{color:var(--tan);letter-spacing:3px}
+    h2{font-family:"Playfair Display",serif;font-size:clamp(29px,4vw,42px);line-height:1.2;margin:8px 0 12px}
+    .subtitle{color:var(--muted);font-size:15px}
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .feature{background:var(--paper);padding:30px 25px;border:1px solid var(--line);border-radius:12px;text-align:center}
+    .feature .symbol{font-size:27px;margin-bottom:10px}
+    .feature h3{font-family:"Playfair Display",serif;font-size:21px;margin-bottom:7px}
+    .feature p{color:var(--muted);font-size:14px}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center;text-align:left}
+    .split img{width:100%;height:430px;object-fit:cover;border-radius:12px}
+    .split-copy p{color:var(--muted);margin:14px 0}
+    .menu-section{background:#f0e8de}
+    .menu-tools{display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-bottom:25px}
+    .search-box{flex:1;min-width:210px;max-width:340px;border:1px solid var(--line);background:white;border-radius:30px;padding:11px 17px;outline:none}
+    .filters{display:flex;gap:8px;flex-wrap:wrap}
+    .filter-btn{border:1px solid #d8c9b9;background:transparent;color:var(--coffee2);padding:9px 15px;border-radius:25px;cursor:pointer;font-size:13px}
+    .filter-btn.active,.filter-btn:hover{background:var(--coffee);color:white;border-color:var(--coffee)}
+    .menu-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+    .menu-card{background:var(--paper);border-radius:12px;overflow:hidden;border:1px solid var(--line);transition:.25s}
+    .menu-card:hover{transform:translateY(-5px);box-shadow:0 12px 28px #39271916}
+    .menu-card img{width:100%;height:190px;object-fit:cover;background:#e5dbcf}
+    .menu-info{padding:16px}
+    .menu-info h3{font-family:"Playfair Display",serif;font-size:18px}
+    .menu-info .desc{font-size:12px;color:var(--muted);min-height:38px;margin:5px 0 10px}
+    .price-row{display:flex;justify-content:space-between;align-items:center;color:#a36f40;font-weight:700;font-size:14px}
+    .order-btn{border:0;background:#f0e5d8;color:#80552f;border-radius:20px;padding:7px 12px;font-size:12px;font-weight:700;cursor:pointer}
+    .order-btn:hover{background:var(--tan);color:white}
+    .empty-state{display:none;text-align:center;color:var(--muted);padding:30px}
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .gallery img{width:100%;height:280px;object-fit:cover;border-radius:12px}
+    .contact-panel{background:var(--coffee);color:white;text-align:center;padding:85px 20px}
+    .contact-panel p{color:#e5d9cf;margin:8px}
+    .contact-panel .btn{margin-top:20px}
+    footer{background:#241a14;color:#d8cabe;text-align:center;padding:25px 15px;font-size:13px}
+    footer strong{color:#e0b27f}
+    @media(max-width:900px){.menu-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.site-header{padding:0 5%}}
+    @media(max-width:700px){
+      .site-header{height:70px}.menu-toggle{display:block}
+      nav{display:none;position:absolute;top:70px;left:0;width:100%;background:var(--coffee);padding:18px 7% 24px;flex-direction:column;align-items:flex-start;gap:12px}
+      nav.show{display:flex}.nav-link{width:100%}
+      .hero{min-height:520px}.hero p{font-size:15px}
+      section{padding:58px 6%}.features{grid-template-columns:1fr}.split{grid-template-columns:1fr;gap:25px}.split img{height:300px}
+      .gallery{grid-template-columns:1fr 1fr}.gallery img{height:190px}
+    }
+    @media(max-width:430px){.menu-grid{grid-template-columns:1fr 1fr;gap:12px}.menu-card img{height:135px}.menu-info{padding:11px}.menu-info h3{font-size:15px}.menu-info .desc{font-size:11px}.price-row{font-size:12px}.order-btn{padding:6px 8px}.gallery{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="SANS Cafe beranda">SANS<span>.</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Buka navigasi" aria-expanded="false">☰</button>
+    <nav id="navbar" aria-label="Navigasi utama">
+      <a class="nav-link active" href="#home">Beranda</a>
+      <a class="nav-link" href="#about">Tentang</a>
+      <a class="nav-link" href="#menu">Menu</a>
+      <a class="nav-link" href="#ambience">Suasana</a>
+      <a class="nav-link" href="#contact">Kontak</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page active" id="home">
+      <div class="hero">
+        <div>
+          <div class="eyebrow">Coffee • Food • Good Moments</div>
+          <h1>SANS CAFE</h1>
+          <p>Tempat singgah untuk menikmati kopi, makanan lezat, dan waktu santai yang terasa lebih berarti.</p>
+          <a class="btn" href="#menu">Jelajahi Menu</a>
+          <a class="btn btn-outline" href="#about">Kenali Kami</a>
+        </div>
+      </div>
+      <section>
+        <div class="section-heading"><div class="eyebrow">Welcome to SANS</div><h2>Tempat Nyaman, Cerita Menyenangkan</h2><p class="subtitle">Datang untuk kopi, tinggal lebih lama karena suasananya.</p></div>
+        <div class="features">
+          <article class="feature"><div class="symbol">☕</div><h3>Kopi Pilihan</h3><p>Disajikan dengan cita rasa yang pas untuk menemani harimu.</p></article>
+          <article class="feature"><div class="symbol">🥐</div><h3>Menu Beragam</h3><p>Ada minuman segar, camilan, dan makanan untuk mengisi energi.</p></article>
+          <article class="feature"><div class="symbol">⌂</div><h3>Suasana Nyaman</h3><p>Ruang santai untuk bertemu teman, bekerja, atau menikmati waktu sendiri.</p></article>
+        </div>
+      </section>
+      <section class="menu-section">
+        <div class="section-heading"><div class="eyebrow">Customer Favorites</div><h2>Favorit Pengunjung</h2><p class="subtitle">Beberapa pilihan yang wajib kamu coba.</p></div>
+        <div class="menu-grid" id="favoriteGrid"></div>
+        <p style="text-align:center;margin-top:30px"><a class="btn" href="#menu">Lihat Semua Menu</a></p>
+      </section>
+    </div>
+
+    <div class="page" id="about">
+      <section>
+        <div class="section-heading"><div class="eyebrow">Our Story</div><h2>Tentang SANS Cafe</h2><p class="subtitle">Kopi yang baik, makanan yang nikmat, dan tempat untuk merasa nyaman.</p></div>
+        <div class="split">
+          <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1100&q=85" alt="Interior kedai kopi dengan meja dan kursi" loading="lazy">
+          <div class="split-copy"><h2>Relax, Enjoy & Feel at Home</h2><p>SANS Cafe hadir sebagai tempat sederhana untuk menikmati jeda dari kesibukan sehari-hari. Kami ingin setiap kunjungan terasa santai, hangat, dan menyenangkan.</p><p>Dengan pilihan kopi, minuman, makanan yang beragam, serta harga yang sangat ramah di kantong,SANS cocok untuk berkumpul bersama teman, mengerjakan tugas, bekerja, atau sekadar menikmati waktu sendiri.</p><p>Kami percaya momen sederhana bisa menjadi pengalaman yang istimewa.</p><a class="btn" href="#menu">Lihat Pilihan Menu</a></div>
+        </div>
+      </section>
+    </div>
+
+    <div class="page" id="menu">
+      <section class="menu-section">
+        <div class="section-heading"><div class="eyebrow">Made with care</div><h2>Menu SANS Cafe</h2><p class="subtitle">Pilih teman terbaik untuk waktu santaimu.</p></div>
+        <div class="menu-tools">
+          <input class="search-box" id="menuSearch" type="search" placeholder="Cari makanan atau minuman..." aria-label="Cari menu">
+          <div class="filters" id="filters">
+            <button class="filter-btn active" data-filter="all">Semua</button>
+            <button class="filter-btn" data-filter="coffee">Coffee</button>
+            <button class="filter-btn" data-filter="noncoffee">Non Coffee</button>
+            <button class="filter-btn" data-filter="food">Makanan</button>
+            <button class="filter-btn" data-filter="snack">Snack</button>
+          </div>
+        </div>
+        <div class="menu-grid" id="menuGrid"></div>
+        <p class="empty-state" id="emptyState">Menu tidak ditemukan. Coba kata kunci lain.</p>
+      </section>
+    </div>
+
+    <div class="page" id="ambience">
+      <section>
+        <div class="section-heading"><div class="eyebrow">The atmosphere</div><h2>Suasana SANS Cafe</h2><p class="subtitle">Sudut-sudut nyaman untuk menikmati waktu tanpa terburu-buru.</p></div>
+        <div class="gallery">
+          <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=900&q=85" alt="Barista menyiapkan kopi" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=85" alt="Kopi dan perlengkapan seduh" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=900&q=85" alt="Suasana interior cafe" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=900&q=85" alt="Meja cafe dekat jendela" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=900&q=85" alt="Area duduk cafe" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=85" alt="Interior restoran yang hangat" loading="lazy">
+        </div>
+      </section>
+    </div>
+
+    <div class="page" id="contact">
+      <section class="contact-panel">
+        <div class="eyebrow">Come say hello</div><h2>Yuk, Mampir ke SANS Cafe</h2>
+        <p>📍 Lokasi: Panyabungan, Indonesia</p>
+        <p>🕒 Jam Operasional: 10.00 – 22.00 WIB</p>
+        <p>☕ WhatsApp: 081260574152</p>
+        <p>CAFENYA BELOM DIBANGUN YA MAN TEMAN ! :)</p>
+        <a class="btn" href="https://wa.me/6281260574152" target="_blank" rel="noopener noreferrer">Hubungi Kami via WhatsApp</a>
+      </section>
+    </div>
+  </main>
+
+  <footer><p>© 2026 <strong>SANS Cafe</strong>. All Rights Reserved.</p><p>Relax Your Mind, Enjoy Your Time.</p></footer>
+
+  <script>
+    // Data menu dapat diubah sesuai daftar dan harga asli cafe.
+    const products = [
+      {name:"Ice Coffee Latte",category:"coffee",price:"Rp 10.000",desc:"Espresso, susu, dan es yang menyegarkan.",image:"photo-1461023058943-07fcbe16d735"},
+      {name:"Cappuccino",category:"coffee",price:"Rp 7.000",desc:"Kopi espresso dengan foam susu lembut.",image:"photo-1570968915860-54d5c301fa9f"},
+      {name:"Americano",category:"coffee",price:"Rp 8.000",desc:"Espresso dengan karakter rasa yang bold.",image:"photo-1517701550927-30cf4ba1dba5"},
+      {name:"Kopi Susu Gula Aren",category:"coffee",price:"Rp 12.000",desc:"Paduan kopi, susu, dan manis gula aren.",image:"photo-1517701604599-bb29b565090c"},
+      {name:"Chocolate Drink",category:"noncoffee",price:"Rp 13.000",desc:"Cokelat creamy untuk teman bersantai.",image:"photo-1542990253-0b8be8a4e5d4"},
+      {name:"Matcha Latte",category:"noncoffee",price:"Rp 15.000",desc:"Matcha dengan susu yang lembut.",image:"photo-1515823064-d6e0c04616a7"},
+      {name:"Lemon Tea",category:"noncoffee",price:"Rp 8.000",desc:"Teh segar dengan sentuhan lemon.",image:"photo-1556679343-c7306c1976bc"},
+      {name:"Strawberry Smoothie",category:"noncoffee",price:"Rp 15.000",desc:"Minuman buah yang segar dan creamy.",image:"photo-1505252585461-04db1eb84625"},
+      {name:"Chicken Rice Bowl",category:"food",price:"Rp 18.000",desc:"Nasi hangat dengan ayam berbumbu.",image:"photo-1512058564366-18510be2db19"},
+      {name:"Beef Burger",category:"food",price:"Rp 22.000",desc:"Burger dengan patty gurih dan sayuran.",image:"photo-1568901346375-23c9450c58cd"},
+      {name:"Chicken Katsu",category:"food",price:"Rp 20.000",desc:"Ayam crispy dengan saus pilihan.",image:"photo-1546833999-b9f581a1996d"},
+      {name:"French Fries",category:"snack",price:"Rp 12.000",desc:"Kentang goreng renyah untuk sharing.",image:"photo-1573080496219-bb080dd4f877"},
+      {name:"Croissant",category:"snack",price:"Rp 15.000",desc:"Pastry berlapis yang buttery dan renyah.",image:"photo-1555507036-ab1f4038808a"},
+      {name:"Pancake",category:"snack",price:"Rp 17.000",desc:"Pancake lembut dengan topping manis.",image:"photo-1528207776546-365bb710ee93"},
+      {name:"Chocolate Cake",category:"snack",price:"Rp 16.000",desc:"Potongan cake cokelat untuk pencinta manis.",image:"photo-1578985545062-69928b1d9587"},
+      {name:"Toast Sandwich",category:"food",price:"Rp 14.000",desc:"Roti panggang dengan isian gurih.",image:"photo-1525351484163-7529414344d8"}
+    ];
+
+    const imageUrl = id => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=700&q=85`;
+    const card = item => `
+      <article class="menu-card">
+        <img src="${imageUrl(item.image)}" alt="${item.name}" loading="lazy">
+        <div class="menu-info">
+          <h3>${item.name}</h3>
+          <p class="desc">${item.desc}</p>
+          <div class="price-row"><span>${item.price}</span><button class="order-btn" data-order="${item.name}">Pesan</button></div>
+        </div>
+      </article>`;
+
+    const menuGrid = document.getElementById("menuGrid");
+    const favoriteGrid = document.getElementById("favoriteGrid");
+    const searchInput = document.getElementById("menuSearch");
+    const emptyState = document.getElementById("emptyState");
+    let activeFilter = "all";
+
+    function renderMenu() {
+      const keyword = searchInput.value.trim().toLowerCase();
+      const filtered = products.filter(item =>
+        (activeFilter === "all" || item.category === activeFilter) &&
+        (item.name.toLowerCase().includes(keyword) || item.desc.toLowerCase().includes(keyword))
+      );
+      menuGrid.innerHTML = filtered.map(card).join("");
+      emptyState.style.display = filtered.length ? "none" : "block";
+    }
+    favoriteGrid.innerHTML = products.slice(0,4).map(card).join("");
+    renderMenu();
+
+    document.getElementById("filters").addEventListener("click", event => {
+      const button = event.target.closest("[data-filter]");
+      if (!button) return;
+      activeFilter = button.dataset.filter;
+      document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.toggle("active", btn === button));
+      renderMenu();
+    });
+    searchInput.addEventListener("input", renderMenu);
+
+    // Tombol pesan membuka WhatsApp dengan nama menu yang dipilih.
+    document.addEventListener("click", event => {
+      const button = event.target.closest("[data-order]");
+      if (!button) return;
+      const message = encodeURIComponent(`Halo SANS Cafe, saya ingin memesan ${button.dataset.order}.`);
+      window.open(`https://wa.me/6281260574152?text=${message}`, "_blank", "noopener");
+    });
+
+    // Navigasi halaman menggunakan hash: setiap menu punya tampilan halaman sendiri.
+    const pages = [...document.querySelectorAll(".page")];
+    const navLinks = [...document.querySelectorAll(".nav-link")];
+    const navbar = document.getElementById("navbar");
+    const menuToggle = document.getElementById("menuToggle");
+
+    function showPage(id, updateHistory = true) {
+      const validId = pages.some(page => page.id === id) ? id : "home";
+      pages.forEach(page => page.classList.toggle("active", page.id === validId));
+      navLinks.forEach(link => link.classList.toggle("active", link.hash === `#${validId}`));
+      navbar.classList.remove("show");
+      menuToggle.setAttribute("aria-expanded", "false");
+      if (updateHistory && location.hash !== `#${validId}`) history.pushState({page:validId}, "", `#${validId}`);
+      window.scrollTo({top:0,behavior:"smooth"});
+    }
+
+    navLinks.forEach(link => link.addEventListener("click", event => {
+      event.preventDefault();
+      showPage(link.hash.slice(1));
+    }));
+    document.querySelectorAll('a[href^="#"]:not(.nav-link)').forEach(link => link.addEventListener("click", event => {
+      const id = link.getAttribute("href").slice(1);
+      if (!document.getElementById(id)?.classList.contains("page")) return;
+      event.preventDefault();
+      showPage(id);
+    }));
+    menuToggle.addEventListener("click", () => {
+      const opened = navbar.classList.toggle("show");
+      menuToggle.setAttribute("aria-expanded", String(opened));
+    });
+    window.addEventListener("popstate", () => showPage(location.hash.slice(1) || "home", false));
+    window.addEventListener("DOMContentLoaded", () => showPage(location.hash.slice(1) || "home", false));
+  </script>
+</body>
+</html>
